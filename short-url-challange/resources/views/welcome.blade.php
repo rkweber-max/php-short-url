@@ -49,7 +49,6 @@
             const originalUrl = document.getElementById('original-url').value;
             const submitButton = document.querySelector('button[type="submit"]');
 
-            // Disable button and show loading
             submitButton.disabled = true;
             submitButton.textContent = 'Encurtando...';
 
@@ -63,20 +62,14 @@
                 body: JSON.stringify({ original_url: originalUrl })
             })
             .then(response => {
-                console.log('Response status:', response.status);
-                console.log('Response headers:', response.headers);
-
                 if (!response.ok) {
                     return response.text().then(text => {
-                        console.error('Error response:', text);
                         throw new Error(`HTTP ${response.status}: ${text}`);
                     });
                 }
                 return response.json();
             })
             .then(data => {
-                console.log('Response data:', data); // Debug log
-
                 if (data.short_url) {
                     const shortUrlElement = document.getElementById('short_url');
                     shortUrlElement.href = data.short_url;
@@ -87,11 +80,9 @@
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
                 alert('Erro ao encurtar a URL: ' + error.message);
             })
             .finally(() => {
-                // Re-enable button
                 submitButton.disabled = false;
                 submitButton.textContent = 'Shorten URL';
             });
