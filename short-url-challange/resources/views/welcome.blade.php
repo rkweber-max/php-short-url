@@ -80,7 +80,7 @@
                 }
             })
             .catch(error => {
-                alert('Erro ao encurtar a URL: ' + error.message);
+                console.log('Erro ao encurtar a URL: ' + error.message);
             })
             .finally(() => {
                 submitButton.disabled = false;
