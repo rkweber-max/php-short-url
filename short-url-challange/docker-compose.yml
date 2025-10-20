@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel-shortener
+        ports:
+            - "8080:80"
+        volumes:
+            - .:/var/www/html
+        environment:
+            APP_ENV: local
+            APP_DEBUG: true
+            APP_KEY: base64:placeholderkey
